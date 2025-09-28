@@ -11,7 +11,14 @@ az group create --name keyvault-demo --location eastus
 ### Create an AKS cluster with Azure Key Vault provider for Secrets Store CSI Driver support
 
 ```
-az aks create --name keyvault-demo-cluster -g keyvault-demo --node-count 1 --enable-addons azure-keyvault-secrets-provider --enable-oidc-issuer --enable-workload-identity
+az aks create \
+  --name keyvault-demo-cluster \
+  --resource-group keyvault-demo \
+  --node-count 1 \
+  --node-vm-size Standard_B2s \
+  --enable-addons azure-keyvault-secrets-provider \
+  --enable-oidc-issuer \
+  --enable-workload-identity
 ```
 
 ### Get the Kubernetes cluster credentials (Update kubeconfig)
