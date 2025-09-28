@@ -33,10 +33,28 @@ az aks get-credentials --resource-group keyvault-demo --name keyvault-demo-clust
 kubectl get pods -n kube-system -l 'app in (secrets-store-csi-driver,secrets-store-provider-azure)' -o wide
 ```
 
+## Registration with Microsoft.KeyVault Resource Provider
+
+- Your subscription isn’t yet registered for the Microsoft.KeyVault resource provider. Before you can create a Key Vault, you need to register it.
+
+Run this command:
+
+```
+az provider register --namespace Microsoft.KeyVault
+```
+
+Then check the registration status:
+
+```
+az provider show --namespace Microsoft.KeyVault -o table
+```
+
+Once it’s registered. move to the next step.
+
 ## Keyvault creation and configuration
 
 - Create a key vault with Azure role-based access control (Azure RBAC).
 
 ```
-az keyvault create -n aks-demo-abhi -g keyvault-demo -l eastus --enable-rbac-authorization
+az keyvault create -n aks-demo-abdullah -g keyvault-demo -l eastus --enable-rbac-authorization
 ```
